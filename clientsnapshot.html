@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Details</title>
+<style>
+    .container {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    input[type="text"], input[type="password"] {
+        width: calc(100% - 12px);
+        padding: 6px;
+        margin-bottom: 10px;
+    }
+    button {
+        padding: 8px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Add Client Details</h2>
+    <div>
+        <label for="clientName">Client Name:</label><br>
+        <input type="text" id="clientName" required><br>
+        <label for="hospitalType">Type of Hospital:</label><br>
+        <input type="text" id="hospitalType" required><br>
+        <button onclick="promptPasswordAndAddClient()">Add Client</button>
+    </div>
+
+    <h2>Search Client</h2>
+    <div>
+        <label for="searchClient">Search by Client Name:</label><br>
+        <input type="text" id="searchClient"><br>
+        <button onclick="searchClient()">Search</button>
+    </div>
+
+    <h2>Client Details</h2>
+    <table id="clientTable">
+        <thead>
+            <tr>
+                <th>Client Name</th>
+                <th>Type of Hospital</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>All India Institue of Medical Sciennce(AIIMS),Delhi</td>
+                <td>Government</td>
+            </tr>
+            <tr>
+                <td>Armed Forces</td>
+                <td>Private</td>
+            </tr>
+            <tr>
+                <td>Aims Delhi</td>
+                <td>Government</td>
+            </tr> <!-- Pre-populated client data can go here as <tr>s -->
+            <!-- For manual addition -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Array to store client details
+    let clients = [
+        { clientName: "All India Institute Of Medical Science(AIIMS),New Delhi", hospitalType: "Government" },
+        { clientName: "Armed Forces", hospitalType: "Goverment" },
+        { clientName: "Post Graduate Institue(PGI),Chandigarh", hospitalType: "Goverment" },
+        { clientName: "Sanjay Gandhi Post Graduate Institue(SGPGI),Lucknow", hospitalType: "Goverment" },
+        { clientName: "Safdarjung Hospital,New Delhi", hospitalType: "Goverment" },
+        { clientName: "PGIMS,Rohtak", hospitalType: "Goverment" },
+        { clientName: "Ram Manohar Lohia", hospitalType: "Goverment" },
+        { clientName: "GTB Hospital", hospitalType: "Goverment" },
+        { clientName: "King George's Medical University", hospitalType: "Goverment" },
+        
+
+
+        // Add more clients as needed
+    ];
+
+    // Function to add client details to table after password verification
+    function promptPasswordAndAddClient() {
+        let password = prompt("Please enter the password to add a client:");
+
+        if (password !== "avd") {
+            alert("Incorrect password. Client addition denied.");
+            return;
+        }
+
+        let clientName = document.getElementById("clientName").value.trim();
+        let hospitalType = document.getElementById("hospitalType").value.trim();
+
+        if (clientName === '' || hospitalType === '') {
+            alert("Please enter both Client Name and Type of Hospital.");
+            return;
+        }
+
+        // Add client details to array
+        clients.push({ clientName: clientName, hospitalType: hospitalType });
+
+        // Update the table with new data
+        displayClientDetails();
+    }
+
+    // Function to display client details in the table
+    function displayClientDetails() {
+        let tableBody = document.querySelector("#clientTable tbody");
+        tableBody.innerHTML = '';
+
+        clients.forEach(client => {
+            let row = tableBody.insertRow();
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+
+            cell1.textContent = client.clientName;
+            cell2.textContent = client.hospitalType;
+        });
+    }
+
+    // Function to search for a client by name
+    function searchClient() {
+        let searchTerm = document.getElementById("searchClient").value.trim().toLowerCase();
+
+        let filteredClients = clients.filter(client =>
+            client.clientName.toLowerCase().includes(searchTerm)
+        );
+
+        // Display only the filtered clients
+        let tableBody = document.querySelector("#clientTable tbody");
+        tableBody.innerHTML = '';
+
+        filteredClients.forEach(client => {
+            let row = tableBody.insertRow();
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+
+            cell1.textContent = client.clientName;
+            cell2.textContent = client.hospitalType;
+        });
+    }
+
+    // Initial display of pre-populated clients
+    displayClientDetails();
+
+</script>
+</body>
+</html>
