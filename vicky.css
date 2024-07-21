@@ -98,6 +98,7 @@ button:hover {
 .navbar ul{
     overflow: auto;
     justify-content: right;
+    color:blue;
 
 }
 .navbar li{
