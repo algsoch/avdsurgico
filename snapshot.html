@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Client Details with Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form, .search-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        form label {
+            flex: 1 1 100%;
+            margin-bottom: 5px;
+        }
+        form input, form select, form button, .search-container input, .search-container select {
+            flex: 1 1 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        form button:hover {
+            background-color: #45a049;
+        }
+        .search-container {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            overflow-x: auto;
+            display: block;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        @media (min-width: 600px) {
+            form label, form input, form select, form button, .search-container input, .search-container select {
+                flex: 1 1 calc(50% - 10px);
+            }
+            form button {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+        }
+        @media (min-width: 900px) {
+            form label, form input, form select, .search-container input, .search-container select {
+                flex: 1 1 calc(33% - 10px);
+            }
+            form button {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Client Details</h1>
+
+    <form id="clientForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" required>
+        
+        <label for="company">Company:</label>
+        <input type="text" id="company" name="company">
+        
+        <label for="clientType">Client Type:</label>
+        <select id="clientType" name="clientType" required>
+            <option value="Government Hospital">Government Hospital</option>
+            <option value="Private Hospital">Private Hospital</option>
+        </select>
+        
+        <button type="button" onclick="addClient()">Add Client</button>
+    </form>
+
+    <div class="search-container">
+        <label for="search">Search by Name:</label>
+        <input type="text" id="search" onkeyup="searchClient()" placeholder="Search for names..">
+        
+        <label for="searchType">Filter by Client Type:</label>
+        <select id="searchType" onchange="searchClient()">
+            <option value="All">All</option>
+            <option value="Government Hospital">Government Hospital</option>
+            <option value="Private Hospital">Private Hospital</option>
+        </select>
+    </div>
+
+    <table id="clientTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Company</th>
+                <th>Client Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Client details will be added here -->
+        </tbody>
+    </table>
+
+    <script>
+        function addClient() {
+            var password = prompt("Please enter the password:");
+            if (password === "avd") {
+                var name = document.getElementById("name").value;
+                var email = document.getElementById("email").value;
+                var phone = document.getElementById("phone").value;
+                var company = document.getElementById("company").value;
+                var clientType = document.getElementById("clientType").value;
+
+                var table = document.getElementById("clientTable").getElementsByTagName('tbody')[0];
+                var newRow = table.insertRow();
+
+                var cell1 = newRow.insertCell(0);
+                var cell2 = newRow.insertCell(1);
+                var cell3 = newRow.insertCell(2);
+                var cell4 = newRow.insertCell(3);
+                var cell5 = newRow.insertCell(4);
+
+                cell1.innerHTML = name;
+                cell2.innerHTML = email;
+                cell3.innerHTML = phone;
+                cell4.innerHTML = company;
+                cell5.innerHTML = clientType;
+
+                document.getElementById("clientForm").reset();
+                alert("Client added successfully!");
+            } else {
+                alert("Sorry, the password is incorrect.");
+            }
+        }
+
+        function searchClient() {
+            var input = document.getElementById("search").value.toLowerCase();
+            var searchType = document.getElementById("searchType").value;
+            var table = document.getElementById("clientTable");
+            var tr = table.getElementsByTagName("tr");
+
+            for (var i = 1; i < tr.length; i++) {
+                var tdName = tr[i].getElementsByTagName("td")[0];
+                var tdType = tr[i].getElementsByTagName("td")[4];
+                if (tdName && tdType) {
+                    var txtValueName = tdName.textContent || tdName.innerText;
+                    var txtValueType = tdType.textContent || tdType.innerText;
+
+                    if (txtValueName.toLowerCase().indexOf(input) > -1 &&
+                        (searchType === "All" || txtValueType === searchType)) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
