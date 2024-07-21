@@ -89,8 +89,9 @@ button:hover {
 }
 
 .navbar{
-    background-color: rgb(35, 100, 75);
+    background-color:black;
     border-radius: .5px;
+    color:blue;
 
     
 }
