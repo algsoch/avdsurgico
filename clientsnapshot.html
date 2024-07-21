@@ -44,13 +44,17 @@
         <input type="text" id="clientName" required><br>
         <label for="hospitalType">Type of Hospital:</label><br>
         <input type="text" id="hospitalType" required><br>
+        <label for="clientState">State:</label><br>
+        <input type="text" id="clientState" required><br>
         <button onclick="promptPasswordAndAddClient()">Add Client</button>
     </div>
 
     <h2>Search Client</h2>
     <div>
-        <label for="searchClient">Search by Client Name:</label><br>
-        <input type="text" id="searchClient"><br>
+        <label for="searchClientName">Search by Client Name:</label><br>
+        <input type="text" id="searchClientName"><br>
+        <label for="searchHospitalType">Search by Type of Hospital:</label><br>
+        <input type="text" id="searchHospitalType"><br>
         <button onclick="searchClient()">Search</button>
     </div>
 
@@ -60,22 +64,26 @@
             <tr>
                 <th>Client Name</th>
                 <th>Type of Hospital</th>
+                <th>State</th>
             </tr>
         </thead>
         <tbody>
+            <!-- Pre-populated client data -->
             <tr>
-                <td>All India Institue of Medical Sciennce(AIIMS),Delhi</td>
+                <td>Client 1</td>
                 <td>Government</td>
+                <td>Delhi</td>
             </tr>
             <tr>
-                <td>Armed Forces</td>
+                <td>Client 2</td>
                 <td>Private</td>
+                <td>Maharashtra</td>
             </tr>
             <tr>
                 <td>Aims Delhi</td>
                 <td>Government</td>
-            </tr> <!-- Pre-populated client data can go here as <tr>s -->
-            <!-- For manual addition -->
+                <td>Delhi</td>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -83,17 +91,51 @@
 <script>
     // Array to store client details
     let clients = [
-        { clientName: "All India Institute Of Medical Science(AIIMS),New Delhi", hospitalType: "Government" },
-        { clientName: "Armed Forces", hospitalType: "Goverment" },
-        { clientName: "Post Graduate Institue(PGI),Chandigarh", hospitalType: "Goverment" },
-        { clientName: "Sanjay Gandhi Post Graduate Institue(SGPGI),Lucknow", hospitalType: "Goverment" },
-        { clientName: "Safdarjung Hospital,New Delhi", hospitalType: "Goverment" },
-        { clientName: "PGIMS,Rohtak", hospitalType: "Goverment" },
-        { clientName: "Ram Manohar Lohia", hospitalType: "Goverment" },
-        { clientName: "GTB Hospital", hospitalType: "Goverment" },
-        { clientName: "King George's Medical University", hospitalType: "Goverment" },
-        
-
+    { clientName: "All India Institute Of Medical Science(AIIMS),New Delhi", hospitalType: "Government" ,state:"Delhi"},
+        { clientName: "Armed Forces", hospitalType: "Goverment",state:"All India"},
+        { clientName: "Post Graduate Institue(PGI),Chandigarh", hospitalType: "Goverment",State:"punjab"},
+        { clientName: "Sanjay Gandhi Post Graduate Institue(SGPGI),Lucknow", hospitalType: "Goverment" ,state:"UP"},
+        { clientName: "Safdarjung Hospital,New Delhi", hospitalType: "Goverment",state:"delhi" },
+        { clientName: "PGIMS,Rohtak", hospitalType: "Goverment",state:"Delhi"},
+        { clientName: "Ram Manohar Lohia", hospitalType: "Goverment" ,state:'Delhi'},
+        { clientName: "GTB Hospital", hospitalType: "Goverment" ,state:'Delhi'},
+        { clientName: "King George's Medical University", hospitalType: "Goverment",state:" " },
+        {clientName:"Cisro Hospital",hospitalType:"Private",state:"Bihar"},
+        {clientName:"Ford Hospital",hospitalType:"Private",state:"Bihar"},
+        {clientName:"Big Apolo Hospital",hospitalType:"Private",state:"Bihar"},
+        {clientName:"Medaz",hospitalType:"Private",state:"Bihar"},
+        {clientName:"Max& Hospital",hospitalType:"Private",state:"Bihar"},
+        {clientName:"Chandan Hospita",hospitalType:"Private",state:"UP"},
+        {clientName:"The health City Hospital",hospitalType:"Private",state:"UP"},
+        {clientName:"Alligar Medical University",hospitalType:"Private",state:"UP"},
+        {clientName:"Crest Hospital",hospitalType:"Private",state:"UP"},
+        {clientName:"Sidh Hospital",hospitalType:"Private",state:"UP"},
+        {clientName:"Apolo Hospital",hospitalType:"Private",state:"UP"},
+        {clientName:"Medanta",hospitalType:"Private",state:"UP"},
+        {clientName:"Brizlal",hospitalType:"Private",state:"Uttrakhand"},
+        {clientName:"Central Hospital",hospitalType:"Private",state:"Uttrakhand"},
+        {clientName:"Kumar Nursing Home",hospitalType:"Private",state:"Uttrakhand"},
+        {clientName:"Sahota Hospita",hospitalType:"Private",state:"Uttrakhand"},
+        {clientName:"Shurbi Hospital",hospitalType:"Private",state:"Maharastra"},
+        {clientName:"Fortis Hospital",hospitalType:"Private",state:"Maharastra"},
+        {clientName:"Mission",hospitalType:"Private",state:"Tamil Nandu"},
+        {clientName:"Malai Hospital",hospitalType:"Private",state:"West Bengal"},
+        {clientName:"Chakkarbhati Hospital",hospitalType:"Private",state:"West Bengal"},
+        {clientName:"Dr Change Hospital",hospitalType:"Private",state:"West Bengal"},
+        {clientName:"Neurocon Hospital",hospitalType:"Private",state:"West Bengal"},
+        {clientName:"Igkkc hospital",hospitalType:"Private",state:"Odisha"},
+        {clientName:"American Neuro and Brain Hospital",hospitalType:"Private",state:"Telangana"},
+        {clientName:"Mahatma Gandhi Hospital",hospitalType:"Private",state:"Rajashthan"},
+        {clientName:"Kota Health Hospital",hospitalType:"Private",state:"Rajashthan"},
+        {clientName:"Jaiseal Hospital",hospitalType:"Private",state:"Rajashthan"},
+        {clientName:"Manipaal Hospital",hospitalType:"Private",state:"Rajashthan"},
+        {clientName:"Delhi ISIC Hospital",hospitalType:"Private",state:"Rajashthan"},
+        {clientName:"Batra Hospital",hospitalType:"Private",state:"Rajashthan"},
+        {clientName:"Park Hospital",hospitalType:"Private",state:"Rajashthan"},
+        {clientName:"qrg Hospital",hospitalType:"Private",state:"Haryana"},
+        {clientName:"Central Hospital",hospitalType:"Private",state:"Haryana"},
+        {clientName:"Sarvodaya Hospital",hospitalType:"Private",state:"Haryana"},
+        {clientName:"Paras Hospital",hospitalType:"Private",state:"Haryana"},
 
         // Add more clients as needed
     ];
@@ -109,14 +151,15 @@
 
         let clientName = document.getElementById("clientName").value.trim();
         let hospitalType = document.getElementById("hospitalType").value.trim();
+        let clientState = document.getElementById("clientState").value.trim();
 
-        if (clientName === '' || hospitalType === '') {
-            alert("Please enter both Client Name and Type of Hospital.");
+        if (clientName === '' || hospitalType === '' || clientState === '') {
+            alert("Please enter Client Name, Type of Hospital, and State.");
             return;
         }
 
         // Add client details to array
-        clients.push({ clientName: clientName, hospitalType: hospitalType });
+        clients.push({ clientName: clientName, hospitalType: hospitalType, state: clientState });
 
         // Update the table with new data
         displayClientDetails();
@@ -131,18 +174,22 @@
             let row = tableBody.insertRow();
             let cell1 = row.insertCell(0);
             let cell2 = row.insertCell(1);
+            let cell3 = row.insertCell(2);
 
             cell1.textContent = client.clientName;
             cell2.textContent = client.hospitalType;
+            cell3.textContent = client.state;
         });
     }
 
-    // Function to search for a client by name
+    // Function to search for a client by name and/or type of hospital
     function searchClient() {
-        let searchTerm = document.getElementById("searchClient").value.trim().toLowerCase();
+        let searchClientName = document.getElementById("searchClientName").value.trim().toLowerCase();
+        let searchHospitalType = document.getElementById("searchHospitalType").value.trim().toLowerCase();
 
         let filteredClients = clients.filter(client =>
-            client.clientName.toLowerCase().includes(searchTerm)
+            client.clientName.toLowerCase().includes(searchClientName) &&
+            client.hospitalType.toLowerCase().includes(searchHospitalType)
         );
 
         // Display only the filtered clients
@@ -153,9 +200,11 @@
             let row = tableBody.insertRow();
             let cell1 = row.insertCell(0);
             let cell2 = row.insertCell(1);
+            let cell3 = row.insertCell(2);
 
             cell1.textContent = client.clientName;
             cell2.textContent = client.hospitalType;
+            cell3.textContent = client.state;
         });
     }
 
