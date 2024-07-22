@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+
+        header h1{
+            width: 100%;
+            height: auto;
+            max-width: 1200px;
+            margin-bottom: 20px;
+            color:blue;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+
+        .catalog {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .product, .extra-product {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .product img, .extra-product img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 5px solid #070a0d;
+        }
+
+        .parent {
+            max-width: 200px;
+            margin: 0 auto 20px;
+        }
+
+        .children, .extra-images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .pagination button:hover {
+            background-color: #0056b3;
+        }
+
+        .pagination span {
+            font-size: 18px;
+        }
+
+        .message {
+            font-size: 20px;
+            color: #333;
+            padding: 20px;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            background-color: #e7f3ff;
+            text-align: center;
+            max-width: 800px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AVD Surgical</h1>
+    </header>
+    <div class="catalog" id="catalog"></div>
+    <div class="pagination">
+        <button id="prev">Previous</button>
+        <span id="page-num">1</span>
+        <button id="next">Next</button>
+    </div>
+    <div class="message">
+        Looking for the best solutions for your needs? Contact us today and let's make your project a success!
+    </div>
+    <script>
+        const products = [
+            // Example product structure
+            {
+                parent: 'page_7.jpg',
+                children: ['page_8.jpg','page_9.jpg','page_10.jpg','page_11.jpg','page_12.jpg',]
+            },
+            {
+                parent: 'page_13.jpg',//14,24
+                children: ['page_15.jpg','page_16.jpg','page_17.jpg','page_18.jpg','page_19.jpg','page_20.jpg','page_21.jpg','page_22.jpg','page_23.jpg']
+            },
+            {
+                parent: 'page_25.jpg',//36
+                children: ['page_26.jpg','page_27.jpg','page_28.jpg','page_29.jpg','page_30.jpg','page_31.jpg','page_32.jpg','page_33.jpg','page_34.jpg','page_35.jpg']
+            },
+            {
+                parent: 'page_37.jpg',
+                children: ['page_38.jpg','page_39.jpg','page_40.jpg','page_41.jpg','page_42.jpg',
+                'page_43.jpg','page_44.jpg','page_45.jpg','page_46.jpg','page_47.jpg','page_48.jpg','page_49.jpg','page_50.jpg','page_51.jpg'
+]
+            },
+            {
+                parent: 'page_53.jpg',//62
+                children: ['page_54.jpg', 'page_55.jpg', 'page_56.jpg', 'page_57.jpg', 'page_58.jpg', 'page_59.jpg', 'page_60.jpg', 'page_61.jpg']
+            },
+            {
+                parent: 'page_63.jpg',
+                children: ['page_64.jpg', 'page_65.jpg', 'page_66.jpg']
+            },
+            {
+                parent: 'page_67.jpg',
+                children: ['page_68.jpg', 'page_69.jpg', 'page_70.jpg']
+            },
+            {
+                parent: 'page_71.jpg',
+                children: ['page_72.jpg','page_73.jpg','page_74.jpg','page_75.jpg','page_76.jpg']
+            },
+            {
+                parent: 'page_77.jpg',//80
+                children: ['page_78.jpg', 'page_79.jpg']
+            },
+            {
+                parent: 'page_81.jpg',//84
+                children: ['page_82.jpg', 'page_83.jpg']
+            },
+            {
+                parent: 'page_85.jpg',
+                children: ['page_86.jpg']
+            },
+            {
+                parent: 'page_87.jpg',//90
+                children: ['page_88.jpg', 'page_89.jpg']
+            },
+            {
+                parent: 'page_91.jpg',
+                children: ['page_92.jpg']
+            },
+            {
+                parent: 'page_93.jpg',
+                children: ['page_94.jpg','page_95.jpg','page_96.jpg','page_97.jpg','page_98.jpg','page_99.jpg','page_100.jpg']
+            },
+            {
+                parent: 'page_101.jpg',
+                children: ['page_102.jpg']
+            },
+            {
+                parent: 'page_103.jpg',
+                children: ['page_104.jpg', 'page_105.jpg']
+            },
+            // Add more products as needed
+        ];
+
+        const extraImages = Array.from({length: 17}, (_, i) => `cardio_${i + 1}.jpg`);
+
+        const productsPerPage = 1;
+        let currentPage = 1;
+        const totalPages = products.length + 1; // +1 for the extra images page
+
+        function renderProducts() {
+            const catalog = document.getElementById('catalog');
+            catalog.innerHTML = '';
+
+            if (currentPage <= products.length) {
+                const start = (currentPage - 1) * productsPerPage;
+                const end = start + productsPerPage;
+
+                const currentProducts = products.slice(start, end);
+
+                currentProducts.forEach(product => {
+                    const productDiv = document.createElement('div');
+                    productDiv.className = 'product';
+
+                    const parentImg = document.createElement('img');
+                    parentImg.src = product.parent;
+                    parentImg.className = 'parent';
+                    productDiv.appendChild(parentImg);
+
+                    const childrenDiv = document.createElement('div');
+                    childrenDiv.className = 'children';
+
+                    product.children.forEach(child => {
+                        const childImg = document.createElement('img');
+                        childImg.src = child;
+                        childrenDiv.appendChild(childImg);
+                    });
+
+                    productDiv.appendChild(childrenDiv);
+                    catalog.appendChild(productDiv);
+                });
+            } else {
+                renderExtraImages();
+            }
+
+            document.getElementById('page-num').textContent = currentPage;
+        }
+
+        function renderExtraImages() {
+            const catalog = document.getElementById('catalog');
+
+            const extraProductDiv = document.createElement('div');
+            extraProductDiv.className = 'extra-product';
+
+            const extraImagesGrid = document.createElement('div');
+            extraImagesGrid.className = 'extra-images-grid';
+
+            extraImages.forEach(imageSrc => {
+                const img = document.createElement('img');
+                img.src = imageSrc;
+                extraImagesGrid.appendChild(img);
+            });
+
+            extraProductDiv.appendChild(extraImagesGrid);
+            catalog.appendChild(extraProductDiv);
+        }
+
+        function setupPagination() {
+            document.getElementById('prev').addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderProducts();
+                }
+            });
+
+            document.getElementById('next').addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderProducts();
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            setupPagination();
+        });
+    </script>
+</body>
+</html>
