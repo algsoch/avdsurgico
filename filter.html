@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Management</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1200px; /* Increased max-width to accommodate two columns */
+        margin: 0 auto;
+        display: flex; /* Flex layout for two columns */
+        flex-wrap: wrap; /* Allow wrapping for responsiveness */
+    }
+
+    .column {
+        flex: 1;
+        padding: 20px;
+        margin-right: 20px; /* Space between columns */
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .column h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .client-list {
+        margin-top: 20px;
+    }
+
+    .client {
+        display: flex;
+        align-items: center;
+        background-color: #f9f9f9;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+    }
+
+    .client img {
+        max-width: 100px;
+        max-height: 100px;
+        border-radius: 50%;
+        margin-right: 20px;
+    }
+
+    .client-details {
+        flex: 1;
+    }
+
+    .controls {
+        margin-bottom: 10px;
+    }
+
+    .controls input[type="text"], .controls select {
+        padding: 8px;
+        margin-right: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="column" id="governmentClientsColumn">
+        <h2>Government Clients</h2>
+        <div class="controls">
+            <input type="text" id="searchGovernmentInput" placeholder="Search Government Clients">
+            <select id="filterGovernmentStateSelect">
+                <option value="all">All States</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="West Bengal">West Bengal</option>
+                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                <option value="Ladakh">Ladakh</option>
+                <option value="Lakshadweep">Lakshadweep</option>
+                <option value="Puducherry">Puducherry</option>
+            </select>
+        </div>
+        <div id="governmentClientList" class="client-list">
+            <!-- Government client list will be displayed here dynamically -->
+        </div>
+    </div>
+
+    <div class="column" id="privateClientsColumn">
+        <h2>Private Clients</h2>
+        <div class="controls">
+            <input type="text" id="searchPrivateInput" placeholder="Search Private Clients">
+            <select id="filterPrivateStateSelect">
+                <option value="all">All States</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="West Bengal">West Bengal</option>
+                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                <option value="Ladakh">Ladakh</option>
+                <option value="Lakshadweep">Lakshadweep</option>
+                <option value="Puducherry">Puducherry</option>
+            </select>
+        </div>
+        <div id="privateClientList" class="client-list">
+            <!-- Private client list will be displayed here dynamically -->
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const governmentClientsColumn = document.getElementById('governmentClientsColumn');
+    const privateClientsColumn = document.getElementById('privateClientsColumn');
+    const searchGovernmentInput = document.getElementById('searchGovernmentInput');
+    const searchPrivateInput = document.getElementById('searchPrivateInput');
+    const filterGovernmentStateSelect = document.getElementById('filterGovernmentStateSelect');
+    const filterPrivateStateSelect = document.getElementById('filterPrivateStateSelect');
+
+    // Initial client data (you can manually add more clients here)
+    let clients = [
+        { clientName: "All India Institute Of Medical Science(AIIMS),New Delhi", clientType: "Government", clientState: "Delhi" },
+        { clientName: "Armed Forces", clientType: "Government", clientState: "All India" },
+        { clientName: "Post Graduate Institude Of Medical Education & Research(PGIMER), Chandigarh", clientType: "Government", clientState: "Punjab" },
+        { clientName: "Sanjay Gandhi Post Graduate Institue Of Medical Science (SGPGI), Lucknow", clientType: "Government", clientState: "UP" },
+        { clientName: "Safdarjung Hospital, New Delhi", clientType: "Government", clientState: "Delhi" },
+        { clientName: "PGIMS, Rohtak", clientType: "Government", clientState: "Haryana" },
+        { clientName: "Ram Manohar Lohia Hospital, New Delhi", clientType: "Government", clientState: "Delhi" },
+        { clientName: "GTB Hospital", clientType: "Government", clientState: "Delhi" },
+        { clientName: "King George's Medical University", clientType: "Government", clientState: "UP" },
+        { clientName: "Cisro Hospital", clientType: "Private", clientState: "Bihar" },
+        { clientName: "Ford Hospital", clientType: "Private", clientState: "Bihar" },
+        { clientName: "Big Apollo Hospital", clientType: "Private", clientState: "Bihar" },
+        { clientName: "Medaz", clientType: "Private", clientState: "Bihar" },
+        { clientName: "Max& Hospital", clientType: "Private", clientState: "Bihar" },
+        { clientName: "Chandan Hospital", clientType: "Private", clientState: "UP" },
+        { clientName: "The Health City Hospital", clientType: "Private", clientState: "UP" },
+        { clientName: "Aligarh Medical University", clientType: "Private", clientState: "UP" },
+        { clientName: "Crest Hospital", clientType: "Private", clientState: "UP" },
+        { clientName: "Sidh Hospital", clientType: "Private", clientState: "UP" },
+        { clientName: "Apollo Hospital", clientType: "Private", clientState: "UP" },
+        { clientName: "Medanta", clientType: "Private", clientState: "UP" },
+        { clientName: "Brizlal Hospital", clientType: "Private", clientState: "Uttarakhand" },
+        { clientName: "Central Hospital", clientType: "Private", clientState: "Uttarakhand" },
+        { clientName: "Kumar Nursing Home", clientType: "Private", clientState: "Uttarakhand" },
+        { clientName: "Sahota Hospital", clientType: "Private", clientState: "Uttarakhand" },
+        { clientName: "Shurbi Hospital", clientType: "Private", clientState: "Maharashtra" },
+        { clientName: "Fortis Hospital", clientType: "Private", clientState: "Maharashtra" },
+        { clientName: "Mission Hospital", clientType: "Private", clientState: "Tamil Nadu" },
+        { clientName: "Malai Hospital", clientType: "Private", clientState: "West Bengal" },
+        { clientName: "Chakkarbhati Hospital", clientType: "Private", clientState: "West Bengal" },
+        { clientName: "Dr Change Hospital", clientType: "Private", clientState: "West Bengal" },
+        { clientName: "Neurocon Hospital", clientType: "Private", clientState: "West Bengal" },
+        { clientName: "Igkkc Hospital", clientType: "Private", clientState: "Odisha" },
+        { clientName: "American Neuro and Brain Hospital", clientType: "Private", clientState: "Telangana" },
+        { clientName: "Mahatma Gandhi Hospital", clientType: "Private", clientState: "Rajasthan" },
+        { clientName: "Kota Health Hospital", clientType: "Private", clientState: "Rajasthan" },
+        { clientName: "Jaiseal Hospital", clientType: "Private", clientState: "Rajasthan" },
+        { clientName: "Manipal Hospital", clientType: "Private", clientState: "Rajasthan" },
+        { clientName: "Delhi ISIC Hospital", clientType: "Private", clientState: "Delhi" },
+        { clientName: "Batra Hospital", clientType: "Private", clientState: "Delhi" },
+        { clientName: "Park Hospital", clientType: "Private", clientState: "Delhi" },
+        { clientName: "qrg Hospital", clientType: "Private", clientState: "Haryana" },
+        { clientName: "Central Hospital", clientType: "Private", clientState: "Haryana" },
+        { clientName: "Sarvodaya Hospital", clientType: "Private", clientState: "Haryana" },
+        { clientName: "Paras Hospital", clientType: "Private", clientState: "Haryana" }
+    ];
+
+    // Function to filter clients based on search input and state selection
+    function filterClients(clients, searchText, stateFilter, clientType) {
+        return clients.filter(client => {
+            const matchesSearch = client.clientName.toLowerCase().includes(searchText.toLowerCase());
+            const matchesState = stateFilter === 'all' || client.clientState.toLowerCase() === stateFilter.toLowerCase();
+            const matchesType = client.clientType.toLowerCase() === clientType.toLowerCase();
+            return matchesSearch && matchesState && matchesType;
+        });
+    }
+
+    // Function to render clients in the specified column
+    function renderClients(clients, columnElement) {
+        const clientListElement = columnElement.querySelector('.client-list');
+        clientListElement.innerHTML = ''; // Clear previous list
+
+        if (clients.length > 0) {
+            clients.forEach(client => {
+                const clientElement = document.createElement('div');
+                clientElement.classList.add('client');
+                clientElement.innerHTML = `
+                    <div class="client-details">
+                        <h3>${client.clientName}</h3>
+                        <p>Type: ${client.clientType}</p>
+                        <p>State: ${client.clientState}</p>
+                    </div>
+                `;
+                clientListElement.appendChild(clientElement);
+            });
+        } else {
+            const noClientsMessage = document.createElement('p');
+            noClientsMessage.textContent = 'No clients found.';
+            clientListElement.appendChild(noClientsMessage);
+        }
+    }
+
+    // Event listeners for input and select elements
+    searchGovernmentInput.addEventListener('input', function() {
+        const searchText = this.value.trim();
+        const stateFilter = filterGovernmentStateSelect.value;
+        const filteredClients = filterClients(clients, searchText, stateFilter, 'Government');
+        renderClients(filteredClients, governmentClientsColumn);
+    });
+
+    searchPrivateInput.addEventListener('input', function() {
+        const searchText = this.value.trim();
+        const stateFilter = filterPrivateStateSelect.value;
+        const filteredClients = filterClients(clients, searchText, stateFilter, 'Private');
+        renderClients(filteredClients, privateClientsColumn);
+    });
+
+    filterGovernmentStateSelect.addEventListener('change', function() {
+        const searchText = searchGovernmentInput.value.trim();
+        const stateFilter = this.value;
+        const filteredClients = filterClients(clients, searchText, stateFilter, 'Government');
+        renderClients(filteredClients, governmentClientsColumn);
+    });
+
+    filterPrivateStateSelect.addEventListener('change', function() {
+        const searchText = searchPrivateInput.value.trim();
+        const stateFilter = this.value;
+        const filteredClients = filterClients(clients, searchText, stateFilter, 'Private');
+        renderClients(filteredClients, privateClientsColumn);
+    });
+
+    // Initial rendering of clients when the page loads
+    renderClients(clients.filter(client => client.clientType === 'Government'), governmentClientsColumn);
+    renderClients(clients.filter(client => client.clientType === 'Private'), privateClientsColumn);
+});
+</script>
+
+</body>
+</html>
