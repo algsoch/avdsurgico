@@ -32,6 +32,7 @@
             color: #fff;
             text-decoration: none;
             font-size: 1.2em;
+            cursor: pointer;
         }
         .logo {
             position: absolute;
@@ -45,6 +46,10 @@
         }
         section {
             padding: 2em;
+            display: none;
+        }
+        section.active {
+            display: block;
         }
         h1, h2 {
             color: #4CAF50;
@@ -122,25 +127,21 @@
     <header>
         <img src="logo5.jpg" alt="AVD Surgico Logo" class="logo">
         <nav>
-            <a href="home.html">Home</a>
-            <a href="cat6.html">Product</a>
-            <a href="filter.html">Client Snapshot</a>
-            <a href="feedback.html">Testimony</a>
-            <a href="form.html">Quotation</a>
-            <a href="CONTACT.html">Contact Us</a>
+            <a onclick="showSection('home')">Home</a>
+            <a onclick="showSection('product')">Product</a>
+            <a onclick="showSection('clientSnapshot')">Client Snapshot</a>
+            <a onclick="showSection('testimony')">Testimony</a>
+            <a onclick="showSection('quotation')">Quotation</a>
+            <a onclick="showSection('contact')">Contact Us</a>
         </nav>
-        <div id="home" class="container">
-            <h1>Welcome to AVD Surgico</h1>
-            <p>We provide the best surgical products and services.</p>
-        </div>
     </header>
 
-    <section id="about" class="container">
-        <h2>About Us</h2>
-        <p>AVD Surgico is dedicated to providing high-quality surgical instruments and products to medical professionals worldwide.</p>
+    <section id="home" class="container active">
+        <h1>Welcome to AVD Surgico</h1>
+        <p>We provide the best surgical products and services.</p>
     </section>
 
-    <section id="portfolio" class="container">
+    <section id="product" class="container">
         <h2>Our Products</h2>
         <div class="project">
             <div>
@@ -156,26 +157,12 @@
         </div>
     </section>
 
-    <section id="resume" class="container">
-        <h2>Quotation</h2>
-        <a href="form.html" download>Request a Quotation</a>
-    </section>
-
-    <section id="learning" class="container learning-section">
+    <section id="clientSnapshot" class="container learning-section">
         <h2>Client Snapshot</h2>
         <p>We have served numerous satisfied clients globally. Here are some of their testimonials:</p>
     </section>
 
-    <section id="contact" class="container">
-        <h2>Contact Us</h2>
-        <div class="contact-info">
-            <p>Name: AVD Surgico</p>
-            <p>Email: <a href="mailto:info@avdsurgico.com">info@avdsurgico.com</a></p>
-            <p>Phone: 123-456-7890</p>
-        </div>
-    </section>
-
-    <section id="feedback" class="container">
+    <section id="testimony" class="container">
         <h2>Testimony</h2>
         <table class="client-table">
             <tr>
@@ -191,12 +178,38 @@
         </table>
     </section>
 
+    <section id="quotation" class="container">
+        <h2>Quotation</h2>
+        <a href="form.html" download>Request a Quotation</a>
+    </section>
+
+    <section id="contact" class="container">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <p>Name: AVD Surgico</p>
+            <p>Email: <a href="mailto:info@avdsurgico.com">info@avdsurgico.com</a></p>
+            <p>Phone: 123-456-7890</p>
+        </div>
+    </section>
+
     <div class="social-links">
         <a href="https://twitter.com/your-twitter-handle" target="_blank">Twitter</a>
         <a href="https://github.com/your-github-handle" target="_blank">GitHub</a>
         <a href="https://freelancer.com/your-freelancer-profile" target="_blank">Freelancer</a>
         <a href="https://upwork.com/your-upwork-profile" target="_blank">Upwork</a>
     </div>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+                if (section.id === sectionId) {
+                    section.classList.add('active');
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
