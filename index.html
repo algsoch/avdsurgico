@@ -8,208 +8,85 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        body, html {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            color: #333;
+            height: 100%;
+            font-family: Arial, sans-serif;
+                    text-transform: capitalize;
+
         }
-        header {
-            background: #800000;
-            color: #fff;
+        .header {
+            background-color: #800000; /* Similar to the maroon color in the image */
+            padding: 10px 20px;
             text-align: center;
-            padding: 2em 0;
             position: relative;
         }
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 2em;
-            margin-bottom: 2em;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2em;
-            cursor: pointer;
-        }
-        .logo {
+        .header img {
             position: absolute;
+            left: 20px;
             top: 50%;
-            left: 2%;
             transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            background: #800000;
+            padding-top: 3px;
+            height: 50px; /* Adjust as needed */
+                         background-color: #800000;
+
+            
         }
-        section {
-            padding: 2em;
-            display: none;
+        .logo{
+             background-color: #800000;
         }
-        section.active {
-            display: block;
+        .header h1 {
+            color: blue; /* Heading color */
+            margin: 0;
         }
-        h1, h2 {
-            color: #4CAF50;
-        }
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 1em;
-        }
-        .project {
+        .navbar {
             display: flex;
-            flex-wrap: wrap;
-            gap: 2em;
+            
+            justify-content: center;
+            background-color: #800000; /* Same maroon color */
+            padding: 10px 0; /* Padding at the top and bottom of the navbar */
         }
-        .project div {
-            flex: 1 1 calc(50% - 2em);
-            border: 1px solid #ddd;
-            padding: 1em;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .project img {
-            max-width: 100%;
-            height: auto;
-            max-height: 200px;
-            display: block;
-            margin: auto;
-        }
-        .contact-info {
-            text-align: center;
-            margin-top: 2em;
-        }
-        .contact-info p {
-            margin: 0.5em 0;
-        }
-        .social-links {
-            text-align: center;
-            margin-top: 2em;
-        }
-        .social-links a {
-            margin: 0 1em;
+        .navbar a {
+            color: blue;
             text-decoration: none;
-            color: #4CAF50;
-            font-size: 1.5em;
+            margin: 0 5px; /* Margin to add space between the links */
+            padding: 15px 20px;
+            background-color: black; /* Background color of each link */
+            display: block;
         }
-        .learning-section {
-            background: #f9f9f9;
-            padding: 2em;
-            margin-top: 2em;
+        .navbar a:hover {
+            background-color: #560000; /* Darker shade for hover effect */
         }
-        .client-table {
+        .content {
+            height: calc(100vh - 100px); /* Adjust height based on the height of the header and navbar */
+        }
+        .content img {
             width: 100%;
-            border-collapse: collapse;
-            margin: 2em 0;
-        }
-        .client-table th, .client-table td {
-            border: 1px solid #ddd;
-            padding: 1em;
-            text-align: left;
-        }
-        .client-table th {
-            background: #4CAF50;
-            color: #fff;
-        }
-        .client-table tr:nth-child(even) {
-            background: #f2f2f2;
-        }
-        .client-table tr:hover {
-            background: #ddd;
+            height: auto;
+            object-fit: cover;
         }
     </style>
 </head>
 <body>
-
-    <header>
-        <img src="logo5.jpg" alt="AVD Surgico Logo" class="logo">
-        <nav>
-            <a onclick="showSection('home')">Home</a>
-            <a onclick="showSection('product')">Product</a>
-            <a onclick="showSection('clientSnapshot')">Client Snapshot</a>
-            <a onclick="showSection('testimony')">Testimony</a>
-            <a onclick="showSection('quotation')">Quotation</a>
-            <a onclick="showSection('contact')">Contact Us</a>
-        </nav>
-    </header>
-
-    <section id="home" class="container active">
-        <h1>Welcome to AVD Surgico</h1>
-        <p>We provide the best surgical products and services.</p>
-    </section>
-
-    <section id="product" class="container">
-        <h2>Our Products</h2>
-        <div class="project">
-            <div>
-                <img src="product1.jpg" alt="Product 1">
-                <h3>Surgical Scissors</h3>
-                <p>High precision surgical scissors for various applications.</p>
-            </div>
-            <div>
-                <img src="product2.jpg" alt="Product 2">
-                <h3>Surgical Forceps</h3>
-                <p>Durable and reliable forceps for surgical procedures.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="clientSnapshot" class="container learning-section">
-        <h2>Client Snapshot</h2>
-        <p>We have served numerous satisfied clients globally. Here are some of their testimonials:</p>
-    </section>
-
-    <section id="testimony" class="container">
-        <h2>Testimony</h2>
-        <table class="client-table">
-            <tr>
-                <th>Client Name</th>
-                <th>Company</th>
-                <th>Project</th>
-            </tr>
-            <tr>
-                <td>Devanand</td>
-                <td>AVD Surgico</td>
-                <td>Website making for AVD Surgico</td>
-            </tr>
-        </table>
-    </section>
-
-    <section id="quotation" class="container">
-        <h2>Quotation</h2>
-        <a href="form.html" download>Request a Quotation</a>
-    </section>
-
-    <section id="contact" class="container">
-        <h2>Contact Us</h2>
-        <div class="contact-info">
-            <p>Name: AVD Surgico</p>
-            <p>Email: <a href="mailto:info@avdsurgico.com">info@avdsurgico.com</a></p>
-            <p>Phone: 123-456-7890</p>
-        </div>
-    </section>
-
-    <div class="social-links">
-        <a href="https://twitter.com/your-twitter-handle" target="_blank">Twitter</a>
-        <a href="https://github.com/your-github-handle" target="_blank">GitHub</a>
-        <a href="https://freelancer.com/your-freelancer-profile" target="_blank">Freelancer</a>
-        <a href="https://upwork.com/your-upwork-profile" target="_blank">Upwork</a>
+    <div class="header">
+        <img  style="background-color:red;" class="logo" src="logo5.jpg" alt="Logo"> <!-- Replace 'logo.png' with your logo file path -->
+        <h1>AVD SURGICO</h1>
     </div>
+    <div class="navbar">
+        <a href="home.html">HOME</a>
+                
+        <a href="cat6.html">PRODUCT</a>
+       <a href="filter.html">CLIENTSNAPSHOT</a>
 
-    <script>
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-                if (section.id === sectionId) {
-                    section.classList.add('active');
-                }
-            });
-        }
-    </script>
+        
+        <a href="feedback.html">TESTIMONY</a>
+        <a href="form.html">QUOTATION</a>
+        <a href="CONTACT.html">CONTACT US</a>
+    </div>
+    <div class="content">
+        <img src="spinal.jpg" alt="Background Image"> <!-- Replace 'background.jpg' with your background image file path -->
+    </div>
 
 </body>
 </html>
