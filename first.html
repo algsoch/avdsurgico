@@ -124,7 +124,7 @@
         function loadImages() {
             return new Promise((resolve) => {
                 let loadedImages = 0;
-                for (let i = 1; i <= totalImages; i++) {
+                for (let i = 7; i <= totalImages; i++) {
                     const imgUrl = `page_${i}.jpg`;
                     imageExists(imgUrl).then((exists) => {
                         if (exists) {
