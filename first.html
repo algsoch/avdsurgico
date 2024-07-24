@@ -140,13 +140,13 @@
                 });
             }
         }
-        function loadImages() {
+        function loadImages1() {
             for (let i = 1; i <= 17; i++) {
                 const imgUrl = `cardio_${i}.jpg`;
                 imageExists(imgUrl, exists => {
                     if (exists) {
                         const imgDiv = document.createElement('div');
-                        imgDiv.className = i === totalImages ? 'catalog-item last-item' : 'catalog-item';
+                        imgDiv.className = i === 17 ? 'catalog-item last-item' : 'catalog-item';
                         imgDiv.innerHTML = `<img src="${imgUrl}" alt="product ${i}">`;
                         catalog.appendChild(imgDiv);
 
@@ -165,6 +165,7 @@
 
         // Start loading images
         loadImages();
+        loadImages1();
 
         // Get the modal
         const modal = document.getElementById('myModal');
