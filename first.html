@@ -125,7 +125,7 @@
             return new Promise((resolve) => {
                 let loadedImages = 0;
                 for (let i = 1; i <= totalImages; i++) {
-                    const imgUrl = `cardio_${i}.jpg`;
+                    const imgUrl = `page_${i}.jpg`;
                     imageExists(imgUrl).then((exists) => {
                         if (exists) {
                             const imgDiv = document.createElement('div');
@@ -154,7 +154,7 @@
         function loadImages1() {
             return new Promise((resolve) => {
                 let loadedImages = 0;
-                for (let i = 1; i <= totalImages; i++) {
+                for (let i = 1; i <= 17; i++) {
                     const imgUrl = `cardio_${i}.jpg`;
                     imageExists(imgUrl).then((exists) => {
                         if (exists) {
@@ -172,7 +172,7 @@
                             });
                         }
                         loadedImages++;
-                        if (loadedImages === totalImages) {
+                        if (loadedImages === 17) {
                             resolve();
                         }
                     });
