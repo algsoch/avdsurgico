@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clients Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 50%;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Clients Table</h2>
+
+<div class="search-container">
+    <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for clients..">
+</div>
+
+<table id="clientsTable">
+    <thead>
+        <tr>
+            <th>Client Name</th>
+            <th>Client Type</th>
+            <th>Client State</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>All India Institute Of Medical Science (AIIMS), New Delhi</td>
+            <td>Government</td>
+            <td>Delhi</td>
+        </tr>
+        <tr>
+            <td>Armed Forces</td>
+            <td>Government</td>
+            <td>All India</td>
+        </tr>
+        <tr>
+            <td>Post Graduate Institute Of Medical Education & Research (PGIMER), Chandigarh</td>
+            <td>Government</td>
+            <td>Punjab</td>
+        </tr>
+        <tr>
+            <td>Sanjay Gandhi Post Graduate Institute Of Medical Science (SGPGI), Lucknow</td>
+            <td>Government</td>
+            <td>UP</td>
+        </tr>
+        <tr>
+            <td>Safdarjung Hospital, New Delhi</td>
+            <td>Government</td>
+            <td>Delhi</td>
+        </tr>
+        <tr>
+            <td>PGIMS, Rohtak</td>
+            <td>Government</td>
+            <td>Haryana</td>
+        </tr>
+        <tr>
+            <td>Ram Manohar Lohia Hospital, New Delhi</td>
+            <td>Government</td>
+            <td>Delhi</td>
+        </tr>
+        <tr>
+            <td>GTB Hospital</td>
+            <td>Government</td>
+            <td>Delhi</td>
+        </tr>
+        <tr>
+            <td>King George's Medical University</td>
+            <td>Government</td>
+            <td>UP</td>
+        </tr>
+        <tr>
+            <td>Cisro Hospital</td>
+            <td>Private</td>
+            <td>Bihar</td>
+        </tr>
+        <tr>
+            <td>Ford Hospital</td>
+            <td>Private</td>
+            <td>Bihar</td>
+        </tr>
+        <tr>
+            <td>Big Apollo Hospital</td>
+            <td>Private</td>
+            <td>Bihar</td>
+        </tr>
+        <tr>
+            <td>Medaz</td>
+            <td>Private</td>
+            <td>Bihar</td>
+        </tr>
+        <tr>
+            <td>Max& Hospital</td>
+            <td>Private</td>
+            <td>Bihar</td>
+        </tr>
+        <tr>
+            <td>Chandan Hospital</td>
+            <td>Private</td>
+            <td>UP</td>
+        </tr>
+        <tr>
+            <td>The Health City Hospital</td>
+            <td>Private</td>
+            <td>UP</td>
+        </tr>
+        <tr>
+            <td>Aligarh Medical University</td>
+            <td>Private</td>
+            <td>UP</td>
+        </tr>
+        <tr>
+            <td>Crest Hospital</td>
+            <td>Private</td>
+            <td>UP</td>
+        </tr>
+        <tr>
+            <td>Sidh Hospital</td>
+            <td>Private</td>
+            <td>UP</td>
+        </tr>
+        <tr>
+            <td>Apollo Hospital</td>
+            <td>Private</td>
+            <td>UP</td>
+        </tr>
+        <tr>
+            <td>Medanta</td>
+            <td>Private</td>
+            <td>UP</td>
+        </tr>
+        <tr>
+            <td>Brizlal Hospital</td>
+            <td>Private</td>
+            <td>Uttarakhand</td>
+        </tr>
+        <tr>
+            <td>Central Hospital</td>
+            <td>Private</td>
+            <td>Uttarakhand</td>
+        </tr>
+        <tr>
+            <td>Kumar Nursing Home</td>
+            <td>Private</td>
+            <td>Uttarakhand</td>
+        </tr>
+        <tr>
+            <td>Sahota Hospital</td>
+            <td>Private</td>
+            <td>Uttarakhand</td>
+        </tr>
+        <tr>
+            <td>Shurbi Hospital</td>
+            <td>Private</td>
+            <td>Maharashtra</td>
+        </tr>
+        <tr>
+            <td>Fortis Hospital</td>
+            <td>Private</td>
+            <td>Maharashtra</td>
+        </tr>
+        <tr>
+            <td>Mission Hospital</td>
+            <td>Private</td>
+            <td>Tamil Nadu</td>
+        </tr>
+        <tr>
+            <td>Malai Hospital</td>
+            <td>Private</td>
+            <td>West Bengal</td>
+        </tr>
+        <tr>
+            <td>Chakkarbhati Hospital</td>
+            <td>Private</td>
+            <td>West Bengal</td>
+        </tr>
+        <tr>
+            <td>Dr Change Hospital</td>
+            <td>Private</td>
+            <td>West Bengal</td>
+        </tr>
+        <tr>
+            <td>Neurocon Hospital</td>
+            <td>Private</td>
+            <td>West Bengal</td>
+        </tr>
+        <tr>
+            <td>Igkkc Hospital</td>
+            <td>Private</td>
+            <td>Odisha</td>
+        </tr>
+        <tr>
+            <td>American Neuro and Brain Hospital</td>
+            <td>Private</td>
+            <td>Telangana</td>
+        </tr>
+        <tr>
+            <td>Mahatma Gandhi Hospital</td>
+            <td>Private</td>
+            <td>Rajasthan</td>
+        </tr>
+        <tr>
+            <td>Kota Health Hospital</td>
+            <td>Private</td>
+            <td>Rajasthan</td>
+        </tr>
+        <tr>
+            <td>Jaiseal Hospital</td>
+            <td>Private</td>
+            <td>Rajasthan</td>
+        </tr>
+        <tr>
+            <td>Manipal Hospital</td>
+            <td>Private</td>
+            <td>Rajasthan</td>
+        </tr>
+        <tr>
+            <td>Delhi ISIC Hospital</td>
+            <td>Private</td>
+            <td>Delhi</td>
+        </tr>
+        <tr>
+            <td>Batra Hospital</td>
+            <td>Private</td>
+            <td>Delhi</td>
+        </tr>
+        <tr>
+            <td>Park Hospital</td>
+            <td>Private</td>
+            <td>Delhi</td>
+        </tr>
+        <tr>
+            <td>qrg Hospital</td>
+            <td>Private</td>
+            <td>Haryana</td>
+        </tr>
+        <tr>
+            <td>Central Hospital</td>
+            <td>Private</td>
+            <td>Haryana</td>
+        </tr>
+        <tr>
+            <td>Sarvodaya Hospital</td>
+            <td>Private</td>
+            <td>Haryana</td>
+        </tr>
+        <tr>
+            <td>Paras Hospital</td>
+            <td>Private</td>
+            <td>Haryana</td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    function searchTable() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const table = document.getElementById('clientsTable');
+        const tr = table.getElementsByTagName('tr');
+        
+        for (let i = 1; i < tr.length; i++) {
+            let td = tr[i].getElementsByTagName('td');
+            let match = false;
+            for (let j = 0; j < td.length; j++) {
+                if (td[j]) {
+                    if (td[j].innerHTML.toLowerCase().indexOf(filter) > -1) {
+                        match = true;
+                        break;
+                    }
+                }
+            }
+            tr[i].style.display = match ? '' : 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
