@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            color: pink;
+            color: grey;
             text-transform: uppercase;
         }
         .navbar {
@@ -50,7 +50,7 @@
             font-size:25px;
         }
         .navbar ul li a:hover {
-            color: lightblue;
+            color: purple;
             
             font-size:30px;
             border-bottom: 2px solid rgb(225, 21, 21);
@@ -98,7 +98,7 @@
         width: 20px;
         height:20px;
     }
-    #algsoch {
+#algsoch {
     font-family: 'Arial', sans-serif;
     font-size: 24px;
     color: #333;
@@ -106,42 +106,37 @@
     word-spacing: 5px;
     text-align: center;
     margin: 50px auto;
-    padding: 10px;
+    padding: 10px 20px;
     display: inline-block;
     background-color: #f0f0f0;
-    border-radius: 10px;
-    border: 2px solid #ccc;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    border: 3px solid #ccc;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1), inset 0px 0px 10px rgba(255, 255, 255, 0.5);
     overflow: hidden;
     white-space: nowrap;
-    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
 
 #algsoch::before {
     content: "";
-    display: inline-block;
-    width: 0;
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
     height: 100%;
-    vertical-align: middle;
-    background: #ccc;
-    animation: background-dots 5s steps(20) infinite;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-25deg);
+    z-index: 2;
+    transition: left 1s ease;
 }
 
-@keyframes background-dots {
-    0% {
-        width: 0;
-    }
-    100% {
-        width: 100%;
-    }
+#algsoch:hover::before {
+    left: 100%;
 }
 
 #algsoch span {
     display: inline-block;
-    opacity: 0;
-    position: relative;
-    animation: fadeIn 1s forwards;
-    animation-delay: calc(var(--i) * 0.1s);
     background-color: #333;
     border-radius: 50%;
     color: #fff;
@@ -150,25 +145,33 @@
     line-height: 24px;
     text-align: center;
     margin: 0 2px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    position: relative;
+    z-index: 3;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 #algsoch span:hover {
-    transform: scale(1.2);
-    background-color: pink; /* Tomato color on hover */
+    background-color: #ff6347; /* Tomato color on hover */
+    box-shadow: 0px 0px 15px #ff6347, 0px 0px 25px #ff6347 inset;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+#algosch span::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 80%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
+#algsoch span:hover::before {
+    opacity: 1;
+}
     </style>
 </head>
 <body>
